@@ -1,0 +1,133 @@
+**Tugas 9**
+
+1. Buat database niomic kemudian buat tabel mahasiswa_niomic dengan data sebagai berikut:
+
+    **(Note: Silahkan teman-teman berkreasi untuk tipe data.)**
+
+    [https://lh3.googleusercontent.com/oJELjPKxtbvlnKlAnhg-Dhklt0AsFZbKNeQd7t6MnTOBZ4fOLwCs_6ktLUDD3NSz90zCa3itLzGT8cEC6_GIQ6IyIdDu8enDUNY3YCgN7QpwynAo4dNJvaeGBXlm_VcHY_S2nJUK](https://lh3.googleusercontent.com/oJELjPKxtbvlnKlAnhg-Dhklt0AsFZbKNeQd7t6MnTOBZ4fOLwCs_6ktLUDD3NSz90zCa3itLzGT8cEC6_GIQ6IyIdDu8enDUNY3YCgN7QpwynAo4dNJvaeGBXlm_VcHY_S2nJUK)
+
+        MariaDB [niomic]> CREATE TABLE mahasiswa_niomic
+            -> (
+            -> nim CHAR(8),
+            -> nama VARCHAR(100),
+            -> asal VARCHAR(50),
+            -> jurusan VARCHAR(50),
+            -> nilai_uan DOUBLE,
+            -> PRIMARY KEY (nim)
+            -> );
+        Query OK, 0 rows affected (0.497 sec)
+        
+        MariaDB [niomic]> INSERT INTO mahasiswa_niomic
+            -> VALUES
+            -> (17020217,"James Situmorang","Medan", "Kedokteran Gigi",314.10),
+            -> (17080225,"Husli Khairan","Jakarta", "Akuntansi",288.55),
+            -> (17080305,"Rina Kumala Sari","Jakarta", "Akuntansi",337.99),
+            -> (17090113,"Rina Putria","Padang", "Kimia",399.20),
+            -> (17090222,"Sari Citra Lestari","Jakarta", "Manajemen",310.60),
+            -> (17090308,"Chirstine Wijaya","Medan", "Manajemen",321.74),
+            -> (17140119,"Sandri Fatmala","Bandung", "Ilmu Komputer",322.91),
+            -> (17140120,"Bobby Permana","Medan", "Ilmu Komputer",280.82),
+            -> (17240120,"Ikhsan Prayoga","Jakarta", "Ilmu Komputer",300.16),
+            -> (17140143,"Rudi Permana","Bandung", "Ilmu Komputer",290.44);
+        Query OK, 10 rows affected (0.070 sec)
+        Records: 10  Duplicates: 0  Warnings: 0
+        
+        MariaDB [niomic]> SELECT * FROM mahasiswa_niomic;
+        +----------+--------------------+---------+-----------------+-----------+
+        | nim      | nama               | asal    | jurusan         | nilai_uan |
+        +----------+--------------------+---------+-----------------+-----------+
+        | 17020217 | James Situmorang   | Medan   | Kedokteran Gigi |     314.1 |
+        | 17080225 | Husli Khairan      | Jakarta | Akuntansi       |    288.55 |
+        | 17080305 | Rina Kumala Sari   | Jakarta | Akuntansi       |    337.99 |
+        | 17090113 | Rina Putria        | Padang  | Kimia           |     399.2 |
+        | 17090222 | Sari Citra Lestari | Jakarta | Manajemen       |     310.6 |
+        | 17090308 | Chirstine Wijaya   | Medan   | Manajemen       |    321.74 |
+        | 17140119 | Sandri Fatmala     | Bandung | Ilmu Komputer   |    322.91 |
+        | 17140120 | Bobby Permana      | Medan   | Ilmu Komputer   |    280.82 |
+        | 17140143 | Rudi Permana       | Bandung | Ilmu Komputer   |    290.44 |
+        | 17240120 | Ikhsan Prayoga     | Jakarta | Ilmu Komputer   |    300.16 |
+        +----------+--------------------+---------+-----------------+-----------+
+        10 rows in set (0.000 sec)
+
+2. Ubah kolom mahasiswa_baru dengan nama = Irfan Arifin, asal = Lampung dengan kondisi 
+nim = '17020217'
+
+        MariaDB [niomic]> UPDATE mahasiswa_niomic
+            -> SET
+            -> nama = "Irfan Arifin",
+            -> asal = "Lampung"
+            -> WHERE
+            -> nim = '17020217';
+        Query OK, 1 row affected (0.049 sec)
+        Rows matched: 1  Changed: 1  Warnings: 0
+        
+        MariaDB [niomic]> SELECT * FROM mahasiswa_niomic;
+        +----------+--------------------+---------+-----------------+-----------+
+        | nim      | nama               | asal    | jurusan         | nilai_uan |
+        +----------+--------------------+---------+-----------------+-----------+
+        | 17020217 | Irfan Arifin       | Lampung | Kedokteran Gigi |     314.1 |
+        | 17080225 | Husli Khairan      | Jakarta | Akuntansi       |    288.55 |
+        | 17080305 | Rina Kumala Sari   | Jakarta | Akuntansi       |    337.99 |
+        | 17090113 | Rina Putria        | Padang  | Kimia           |     399.2 |
+        | 17090222 | Sari Citra Lestari | Jakarta | Manajemen       |     310.6 |
+        | 17090308 | Chirstine Wijaya   | Medan   | Manajemen       |    321.74 |
+        | 17140119 | Sandri Fatmala     | Bandung | Ilmu Komputer   |    322.91 |
+        | 17140120 | Bobby Permana      | Medan   | Ilmu Komputer   |    280.82 |
+        | 17140143 | Rudi Permana       | Bandung | Ilmu Komputer   |    290.44 |
+        | 17240120 | Ikhsan Prayoga     | Jakarta | Ilmu Komputer   |    300.16 |
+        +----------+--------------------+---------+-----------------+-----------+
+        10 rows in set (0.000 sec)
+
+3. Ubah kolom nilai_uan = 5000 atas nama Husli Khairan. 
+**(Note: Gunakan perintah update ignore)**
+
+        MariaDB [niomic]> UPDATE IGNORE mahasiswa_niomic
+            -> SET
+            -> nilai_uan = 5000
+            -> WHERE
+            -> nama = "Husli Khairan";
+        Query OK, 1 row affected (0.046 sec)
+        Rows matched: 1  Changed: 1  Warnings: 0
+        
+        MariaDB [niomic]> SELECT * FROM mahasiswa_niomic;
+        +----------+--------------------+---------+-----------------+-----------+
+        | nim      | nama               | asal    | jurusan         | nilai_uan |
+        +----------+--------------------+---------+-----------------+-----------+
+        | 17020217 | Irfan Arifin       | Lampung | Kedokteran Gigi |     314.1 |
+        | 17080225 | Husli Khairan      | Jakarta | Akuntansi       |      5000 |
+        | 17080305 | Rina Kumala Sari   | Jakarta | Akuntansi       |    337.99 |
+        | 17090113 | Rina Putria        | Padang  | Kimia           |     399.2 |
+        | 17090222 | Sari Citra Lestari | Jakarta | Manajemen       |     310.6 |
+        | 17090308 | Chirstine Wijaya   | Medan   | Manajemen       |    321.74 |
+        | 17140119 | Sandri Fatmala     | Bandung | Ilmu Komputer   |    322.91 |
+        | 17140120 | Bobby Permana      | Medan   | Ilmu Komputer   |    280.82 |
+        | 17140143 | Rudi Permana       | Bandung | Ilmu Komputer   |    290.44 |
+        | 17240120 | Ikhsan Prayoga     | Jakarta | Ilmu Komputer   |    300.16 |
+        +----------+--------------------+---------+-----------------+-----------+
+        10 rows in set (0.000 sec)
+
+4. Gunakan query replace untuk nilai nim = '17090141', nama = 'Lidya Fitriana', 
+asal = 'Surabaya', jurusan = 'Kimia' dan nilai_uan = 290.54;
+
+        MariaDB [niomic]> REPLACE INTO mahasiswa_niomic
+            -> VALUES
+            -> (17090141, "Lidya Fitriana", "Surabaya", "Kimia", 290.54);
+        Query OK, 1 row affected (0.077 sec)
+        
+        MariaDB [niomic]> SELECT * FROM mahasiswa_niomic;
+        +----------+--------------------+----------+-----------------+-----------+
+        | nim      | nama               | asal     | jurusan         | nilai_uan |
+        +----------+--------------------+----------+-----------------+-----------+
+        | 17020217 | Irfan Arifin       | Lampung  | Kedokteran Gigi |     314.1 |
+        | 17080225 | Husli Khairan      | Jakarta  | Akuntansi       |      5000 |
+        | 17080305 | Rina Kumala Sari   | Jakarta  | Akuntansi       |    337.99 |
+        | 17090113 | Rina Putria        | Padang   | Kimia           |     399.2 |
+        | 17090141 | Lidya Fitriana     | Surabaya | Kimia           |    290.54 |
+        | 17090222 | Sari Citra Lestari | Jakarta  | Manajemen       |     310.6 |
+        | 17090308 | Chirstine Wijaya   | Medan    | Manajemen       |    321.74 |
+        | 17140119 | Sandri Fatmala     | Bandung  | Ilmu Komputer   |    322.91 |
+        | 17140120 | Bobby Permana      | Medan    | Ilmu Komputer   |    280.82 |
+        | 17140143 | Rudi Permana       | Bandung  | Ilmu Komputer   |    290.44 |
+        | 17240120 | Ikhsan Prayoga     | Jakarta  | Ilmu Komputer   |    300.16 |
+        +----------+--------------------+----------+-----------------+-----------+
+        11 rows in set (0.000 sec)
